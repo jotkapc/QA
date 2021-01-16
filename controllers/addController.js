@@ -1,5 +1,7 @@
 const Question = require('../models/Question');
 
+// controller for adding questions
+
 module.exports.add_question_get = async (req, res) => {
   const { isLoggedIn, user_name } = req.session.user;
   res.render('add_question', { isLoggedIn, user_name, error: '' });
@@ -16,6 +18,6 @@ module.exports.add_question_post = async (req, res) => {
     await questionSave.save();
     res.redirect('/');
   } catch (err) {
-    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
   }
 };

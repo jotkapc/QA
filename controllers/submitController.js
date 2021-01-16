@@ -1,12 +1,15 @@
 const Question = require('../models/Question');
 const User = require('../models/User');
 
+// Submission controller
+
 module.exports.submit_question_get = async (req, res) => {
   const { isLoggedIn, user_name, id } = req.session.user;
   const { qid } = req.params;
   const { error = "" } = req.query;
   try {
-    // If User Already Submit Question, and Try to bypass, then
+
+    // If User Already Submit Question, and try to bypass, then
     const { attempts } = await User.findById(id).select("attempts");
     if (attempts.includes(qid)) {
       return res.redirect('/');
@@ -14,7 +17,7 @@ module.exports.submit_question_get = async (req, res) => {
     const { question } = await Question.findById(qid).select("question");
     return res.render('submit_question', { isLoggedIn, user_name, question, qid, error });
   } catch (err) {
-    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
   }
 };
 
@@ -35,6 +38,6 @@ module.exports.submit_question_post = async (req, res) => {
     await User.findOneAndUpdate({ _id: id }, { $push: { attempts: qid } });
     res.redirect('/');
   } catch (err) {
-    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
   }
 };

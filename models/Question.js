@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Secondary Schema Where We Store Answers
+// Schema for storing answers
 
 const answerSchema = new mongoose.Schema({
   answer: {

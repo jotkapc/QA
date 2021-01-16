@@ -36,7 +36,7 @@ module.exports.signup_post = async (req, res) => {
           res.redirect('/');
         })
         .catch(err => {
-          res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+          res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
         });
   } else {
     res.render('signup', { isLoggedIn, user_name, error, uname, email });
@@ -56,8 +56,8 @@ module.exports.login_post = async (req, res) => {
   const regex = new RegExp("^[a-zA-Z0-9._]{5,30}@[a-zA-Z]{3,10}\.[a-zA-Z]{2,10}$");
   let error = { email: '', password: '' };
 
-  // Field Error Handeling
-  if (!regex.test(email)) error.email = "Email Format Incorrect ( Must include @ )";
+  // Error Handeling
+  if (!regex.test(email)) error.email = "Incorrect e-mail format";
   if (password.length < 5) error.password = "Password length must greater than 5";
 
   if (error.email === '' && error.password === '') {
@@ -81,7 +81,7 @@ module.exports.login_post = async (req, res) => {
         res.render('login', { isLoggedIn, user_name, error, email });
       }
     } catch (err) {
-      res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+      res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
     }
   } else {
     res.render('login', { isLoggedIn, user_name, error, email });

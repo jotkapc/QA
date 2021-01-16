@@ -5,6 +5,7 @@ module.exports.isLogin = (req, res, next) => {
     res.redirect('/login');
   }
 }
+// Protection if user is not logged
 
 module.exports.protectWhenLogin = (req, res, next) => {
   if (req.session.user.isLoggedIn) {

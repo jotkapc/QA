@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// Schema for storing user data
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -23,7 +25,7 @@ const userSchema = new mongoose.Schema({
 });
 
 
-// fire a function before doc saved to db
+// Encrypting user password when putting into the database
 userSchema.pre('save', async function(next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);

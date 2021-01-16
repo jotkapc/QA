@@ -24,6 +24,6 @@ module.exports.index = async (req, res) => {
     }
     res.render('home', { isLoggedIn, user_name, id, user, questions, page, questionCount, limitResults });
   } catch (err) {
-    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error, Either from Database or Incorrect Query Parameters." });
+    res.render('error', { isLoggedIn, user_name, error_code: "500", error_msg: "Query Error" });
   }
 };
