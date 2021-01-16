@@ -1,7 +1,7 @@
 # About
 
 QA is the node.js application, which allow user implementing Q&A functionality into their website.
-It consist
+Application is Node.js based using MongoDB as the data store.
 
 ## Prerequisites:
 
