@@ -6,7 +6,7 @@ Application is Node.js based using MongoDB as the data store.
 ## Prerequisites:
 
 
-- Node.js and npm installed.
+- Node.js and npm installed
 - an existing Node.js app (QA app)
 - a free Heroku account ([sing-up for Heroku account](https://signup.heroku.com/))
 - the Heroku CL ([download Heroku CLI](https://devcenter.heroku.com/categories/command-line))
